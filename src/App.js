@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Movies from "./pages/Movies";
+import Movie from "./pages/Movie";
+import Layout from "./pages/Layout";
+import NotFound from "./pages/NotFound";
+import MyPage from "./pages/MyPage";
+import Login from "./pages/Login";
+import UseEffect from "./pages/UseEffect";
+import UseMemo from "./pages/UseMemo";
+import SimpleForm from "./pages/SimpleForm";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        {/* path="/" == index */}
+        <Route index element={<Home/>} /> 
+        <Route path="/movies" element={<Movies />} >
+          <Route path=":id" element={<Movie />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/mypage" element={<MyPage />} />
+        <Route path="/seaons" element={<UseEffect />} />
+      </Route>
+      <Route path="/memo" element={<UseMemo />} />
+      <Route path="/form" element={<SimpleForm />}/>
+      <Route path="*" element={<NotFound />}/>
+    </Routes>
+
   );
 }
 
